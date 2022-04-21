@@ -144,3 +144,12 @@ describe(`webdriver.io page`, () => {
     await browser.pause(3000);
   });
 });
+
+// =============== LOCATORS =======================
+// id locators  (quickest of locators):
+// #search_input_react
+
+// CSS locators:
+// [class="aa-dropdown-menu"][role*='list'][id*="algolia"]div
+
+// *[contains(text(), "Guide")]
