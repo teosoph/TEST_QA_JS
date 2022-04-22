@@ -145,11 +145,24 @@ describe(`webdriver.io page`, () => {
   });
 });
 
-// =============== LOCATORS =======================
-// id locators  (quickest of locators):
-// #search_input_react
+//* =============== LOCATORS =======================
+//* -- Id locators  (quickest of locators):
+//* #search_input_react
 
-// CSS locators:
-// [class="aa-dropdown-menu"][role*='list'][id*="algolia"]div
+//* -- CSS locators:
+//* [class="aa-dropdown-menu"][role*='list'][id*="algolia"]div
+//* [href="http://appium.io"]
+//* li a[href*="http://appium"]
+//* p a[href*="http://appium"]
+//* [src=/img/open-js-logo.svg"]
 
-// *[contains(text(), "Guide")]
+//* -- Xpath locators:
+//*   //*[text()="Introduction"]
+//*  //h3[text()="Introduction"]
+//*   *[contains(text(), "Guide")]
+//*   *[contains(text(), "Guide") and @href and @target]
+//*   *[contains(text(), "Guide") and @href or @targe]
+//*   *[@href or @target]
+//*   *[contains(text(), "Guide") and @href or @targe]/../..  (move to levels up)
+//*   *[contains(text(), "Guide") and @href or @targe]/../..//a  (move down to chosen element "a" )
+//*   //a[@class=contains(text(), 'table')]
