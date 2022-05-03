@@ -10,7 +10,8 @@
     "hw4": "npx wdio run ./wdio.conf.js --spec homeWork-4.js",
     "hw5": "npx wdio run ./wdio.conf.js --spec homeWork-5.js",
     "lessons": "npx wdio run ./wdio.conf.js --spec lessons.js",
-    "lessonsObj": "npx wdio run ./wdio.conf.js --spec lessonPageObjects.js"
+    "lessonsObj": "npx wdio run ./wdio.conf.js --spec lessonPageObjects.js",
+    "fin": "npx wdio run ./wdio.conf.js --spec homeWork-finalProject.js"
 
   },
   "keywords": [],

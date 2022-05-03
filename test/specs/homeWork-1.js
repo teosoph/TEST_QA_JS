@@ -12,44 +12,22 @@ describe(`webdriver.io page`, () => {
 
     // 3. Напечатать в "Terminal" Visual Studio Code текущий адрес в строке браузера( console.log(...))
     let actualUrl = await browser.getUrl();
-    console.log(
-      `========================================================= Текущий адрес страницы:` +
-        actualUrl,
-      ` =========================================================`
-    );
+    console.log(`======== Текущий адрес страницы:` + actualUrl, ` ============`);
 
     //  4. Распечатать заглавие странички (использовать локатор ".postHeaderTitle") - этот локатор неактуальный, применен актуальный "//h1[normalize-space()='Introduction']"
     const postHeaderTitleLocator = $("//h1[normalize-space()='Introduction']");
-    console.log(
-      ` ========================================================= Текущее заглавие страницы:` +
-        (await postHeaderTitleLocator.getText()),
-      ` =========================================================`
-    );
+    console.log(` ======= Текущее заглавие страницы:` + (await postHeaderTitleLocator.getText()), ` ========`);
 
     //    5.  Распечатать атрибут href элемента (использовать локатор "//*[text()="JSONWire protocol"]")
 
     const hrefElementLocator = $("//*[text()='JSONWire protocol']");
-    console.log(
-      `========================================================= Текст href элемента:` +
-        (await hrefElementLocator.getText()),
-      ` =========================================================`
-    );
+    console.log(`========= Текст href элемента:` + (await hrefElementLocator.getText()), ` ==========`);
 
-    console.log(
-      `========================================================= Url href элемента:` +
-        (await hrefElementLocator.getUrl()),
-      ` =========================================================`
-    );
-    console.log(
-      `========================================================= Атрибут "Url" href элемента:` +
-        (await hrefElementLocator.getAttribute("href")),
-      ` =========================================================`
-    );
+    console.log(`========= Url href элемента:` + (await hrefElementLocator.getUrl()), ` ============`);
+    console.log(`========= Атрибут "Url" href элемента:` + (await hrefElementLocator.getAttribute("href")), ` ===========`);
 
     // 6. Напечатать текст "test is " в строке поиска (использовать локатор "'#search_input_react'")
-    const searchFieldLocator = $(
-      "//span[@class='DocSearch-Button-Placeholder']"
-    );
+    const searchFieldLocator = $("//span[@class='DocSearch-Button-Placeholder']");
     await searchFieldLocator.click();
     await browser.pause(2000);
 
