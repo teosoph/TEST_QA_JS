@@ -2,14 +2,14 @@ const assert = require(`assert`);
 
 // Lesson 5 ============= methods getTitle() &  addValue()
 
-describe.skip(`webdriver.io page`, () => {
+describe.only(`webdriver.io page`, () => {
   xit("should have the right title ", async () => {
     await browser.url(`https://webdriver.io`);
     const title = await browser.getTitle();
     assert.strictEqual(title, "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO");
   });
 
-  xit("should demonstrate the addValue command", async () => {
+  it("should demonstrate the addValue command", async () => {
     await browser.url(`https://webdriver.io`);
     const elem = $("//span[@class='DocSearch-Button-Placeholder']");
     await elem.click();
@@ -21,7 +21,9 @@ describe.skip(`webdriver.io page`, () => {
     await browser.pause(4000);
 
     value = await input.getValue();
-    assert(value === "test123"); //true
+    if (value === "test123") {
+      console.log(`aaaqqq111`);
+    }
   });
 
   // Lesson 6 ============= methods setValue() &  click()
@@ -114,7 +116,7 @@ describe.skip(`webdriver.io page`, () => {
     console.log(`=======================  Is ENABLED?: ` + (await isEnabled)); // output: true
   });
 
-  it("should detect the focus of an element", async () => {
+  xit("should detect the focus of an element", async () => {
     await browser.url(`https://webdriver.io`);
 
     const input = $("//span[@class='DocSearch-Button-Placeholder']");
@@ -129,14 +131,14 @@ describe.skip(`webdriver.io page`, () => {
     await browser.pause(2000);
   });
 
-  it("should move to element", async () => {
+  xit("should move to element", async () => {
     await browser.url("https://webdriver.io");
     const githubLink = $("//span[normalize-space()='GitHub']");
     githubLink.scrollIntoView(); // scroll-down to Github link
     await browser.pause(3000);
   });
 
-  it("should move to element", async () => {
+  xit("should move to element", async () => {
     await browser.url("https://webdriver.io");
     const blogButton = $("//a[@class='navbar__item navbar__link'][normalize-space()='Blog']");
     blogButton.scrollIntoView(); // scroll-up to Blog tab
@@ -168,7 +170,7 @@ describe.skip(`webdriver.io page`, () => {
 
 // Lesson 18 ============= methods .skip &  .only &  xit
 
-describe.only(`google.com & webdriver.io`, () => {
+describe.skip(`google.com & webdriver.io`, () => {
   it.skip("should switch to another window", async () => {
     // open url
     await browser.url("https://google.com");

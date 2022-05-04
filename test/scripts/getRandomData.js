@@ -1,4 +1,4 @@
-let chars = "abcsefghijklmnopqrstuvwxyz1234567890_";
+let chars = "abcsefghijklmnopqrstuvwxyz1234567890";
 let string = "";
 let mathRandom = Math.random() * 15;
 

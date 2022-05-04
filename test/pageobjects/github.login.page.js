@@ -32,6 +32,28 @@ class LoginPage {
   clickOnSignInButton() {
     this.signInButtonLocator.click();
   }
+
+  // get  the "Forgot password?" link locator
+  get forgotPasswordLinkLocator() {
+    return $("//a[@class='label-link position-absolute top-0 right-0']");
+  }
+  // click method on the "Forgot password?" link
+  clickOnForgotPasswordLink() {
+    this.forgotPasswordLinkLocator.click();
+  }
+
+  // get  the "Email" input field for reset password locator
+  get emailInputForResetLocator() {
+    return $("//input[@id='email_field']");
+  }
+  // click method on the password input field
+  clickOnEmailInputForReset() {
+    this.emailInputForResetLocator.click();
+  }
+  // add value to the password input field
+  addEmailToInputForReset(value) {
+    this.emailInputForResetLocator.addValue(value);
+  }
 }
 
 module.exports = new LoginPage();
