@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test1": "npx wdio run ./wdio.conf.js --spec test1.js",
+    "hw1": "npx wdio run ./wdio.conf.js --spec homeWork-1.js",
+    "hw4": "npx wdio run ./wdio.conf.js --spec homeWork-4.js",
+    "hw5": "npx wdio run ./wdio.conf.js --spec homeWork-5.js",
+    "lessons": "npx wdio run ./wdio.conf.js --spec lessons.js",
+    "lessonsObj": "npx wdio run ./wdio.conf.js --spec lessonPageObjects.js",
+    "fin": "npx wdio run ./wdio.conf.js --spec homeWork-finalProject.js"
+
   },
   "keywords": [],
   "author": "",
