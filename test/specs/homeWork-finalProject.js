@@ -121,11 +121,11 @@ describe(`webdriver.io page`, () => {
   });
   // ========== Task-3 ============
   xit("checking the reset of the registered Github account password with empty field", async () => {
-      // open url https://github.com
-      await browser.url(testSiteUrl);
-      
-      //   click on the "Sign In" button
-≈    await mainPage.clickOnSignInButton();
+    // open url https://github.com
+    await browser.url(testSiteUrl);
+
+    //   click on the "Sign In" button
+    await mainPage.clickOnSignInButton();
     await browser.pause(2000);
 
     //   click on the "Forgot password?" link
@@ -180,23 +180,58 @@ describe(`webdriver.io page`, () => {
     await loginPage.addEmailToInputForReset(validEmail);
     await browser.pause(4000);
   });
-    
+
   // ========== Task-4 ============
-  //   mouse hover on header menu tabs => isDisplayed
-  
+  it("checking the hover and display of the header drop-down menu tabs", async () => {
+    // open url https://github.com
+    await browser.url(testSiteUrl);
+
+    // ============ the "Product" tab ================
+    //   get the "Product" tab location
+    const productTabLocation = await mainPage.productTabLocator.getLocation();
+    //   move mouse-hover to the "Product" tab location
+    await mainPage.moveToProductTab(productTabLocation);
+    // await browser.pause(2000);
+    // check if "Product" drop-down menu tab is displayed
+    const isProductTabDisplayed = mainPage.productTabLocator.isDisplayed();
+    console.log(`================== Is displayed the "Product" tab in the header?: ` + (await isProductTabDisplayed)); // output: true
+
+    // ============ the "Explore" tab ================
+    //   get the "Explore" tab location
+    const exploreTabLocation = await mainPage.exploreTabLocator.getLocation();
+    //   move mouse-hover to the "Explore" tab location
+    await $(`//input[@placeholder='Search GitHub']`).moveTo(); // needed for the moveTo method to work
+    await mainPage.moveToExploreTab(exploreTabLocation);
+    // await browser.pause(2000);
+    // check if "Explore" drop-down menu tab is displayed
+    const isExploreTabDisplayed = mainPage.exploreTabLocator.isDisplayed();
+    console.log(`================== Is displayed the "Explore" tab in the header?: ` + (await isExploreTabDisplayed)); // output: true
+
+    // ============ the "Pricing" tab ================
+    //   get the "Pricing" tab location
+    const pricingTabLocation = await mainPage.pricingTabLocator.getLocation();
+    //   move mouse-hover to the "Pricing" tab location
+    await $(`//input[@placeholder='Search GitHub']`).moveTo(); // needed for the moveTo method to work
+    await mainPage.moveToPricingTab(pricingTabLocation);
+    // await browser.pause(2000);
+    // check if "Pricing" drop-down menu tab is displayed
+    const isPricingTabDisplayed = mainPage.pricingTabLocator.isDisplayed();
+    console.log(`================== Is displayed the "Pricing" tab in the header?: ` + (await isPricingTabDisplayed)); // output: true
+  });
+
   // ========== Task-5 ============
   // Pricing => Plans -> chose "Join for free"
-  // Make registartion
-  
+  // Make registration
+
   // ========== Task-6 ============
   //   explore Git -> topics (isDisplayed)
-  
+
   // ========== Task-7 ============
   // Search input -> fill "webdriver.io" -> filter "TypeScript" -> click on the first search result -> URL should contain  "webdriver.io"
-  
+
   // ========== Task-8 ============
   //   Click on the "Start a free trial" on main -> choose "enterpris cloud" -> registaration -> go back ...
-  
+
   // ========== Task-9 ============
-//    Click on the "Cariers" -> open positions -> console.log all labels
+  //    Click on the "Cariers" -> open positions -> console.log all labels
 });

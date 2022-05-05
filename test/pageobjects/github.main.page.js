@@ -1,4 +1,5 @@
 class MainPage {
+  // ============ the "Sign In" button ================
   // get the locator of the "Sign In" button  header
   get signInButtonLocator() {
     return $("//a[@class='HeaderMenu-link flex-shrink-0 no-underline']");
@@ -8,6 +9,7 @@ class MainPage {
     this.signInButtonLocator.click();
   }
 
+  // ============ the "Email" field ================
   // get the locator of the "Email" field
   get emailFieldLocator() {
     return $("#user_email");
@@ -29,6 +31,7 @@ class MainPage {
     this.emailContinueButtonLocator.click();
   }
 
+  // ============ the "Password" field ================
   // get the locator of the "Password" field
   get passwordFieldLocator() {
     return $("//input[@id='password']");
@@ -50,6 +53,7 @@ class MainPage {
     this.passwordContinueButtonLocator.click();
   }
 
+  // ============ the "Login" field ================
   // get the locator of the "Login" field
   get loginFieldLocator() {
     return $("//input[@id='login']");
@@ -71,6 +75,7 @@ class MainPage {
     this.loginContinueButtonLocator.click();
   }
 
+  // ============ the Subscribe input field ================
   // get the locator of the subscribe input field
   get subscribeInputFieldLocator() {
     return $("//input[@id='opt_in']");
@@ -90,6 +95,42 @@ class MainPage {
   // click method on the subscribe input field "Continue" button
   clickOnSubscribeInputFieldContinueButton() {
     this.subscribeInputFieldContinueButtonLocator.click();
+  }
+
+  // ============ the "Product" tab ================
+  // get the locator of the "Product" tab in the header
+  get productTabLocator() {
+    return $("(//ul/li/details/summary)[1]");
+    // return $("//summary[normalize-space()='Product']");
+  }
+  // moveTo method on the "Product" tab in the header
+  async moveToProductTab(value) {
+    await this.productTabLocator.moveTo(value);
+    await browser.pause(2000);
+  }
+
+  // ============ the "Explore" tab ================
+  // get the locator of the "Explore" tab in the header
+  get exploreTabLocator() {
+    return $("(//ul/li/details/summary)[2]");
+    // return $("//summary[normalize-space()='Explore']");
+  }
+  // moveTo method on the "Explore" tab in the header
+  async moveToExploreTab(value) {
+    await this.exploreTabLocator.moveTo(value);
+    await browser.pause(2000);
+  }
+
+  // ============ the "Pricing" tab ================
+  // get the locator of the "Pricing" tab in the header
+  get pricingTabLocator() {
+    return $("(//ul/li/details/summary)[3]");
+    // return $("//summary[normalize-space()='Pricing']");
+  }
+  // moveTo method on the "Pricing" tab in the header
+  async moveToPricingTab(value) {
+    await this.pricingTabLocator.moveTo(value);
+    await browser.pause(2000);
   }
 }
 
