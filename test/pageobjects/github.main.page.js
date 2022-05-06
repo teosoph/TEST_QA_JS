@@ -1,6 +1,6 @@
 class MainPage {
   // ============ the "Sign In" button ================
-  // get the locator of the "Sign In" button  header
+  // get the locator of the "Sign In" button in the header
   get signInButtonLocator() {
     return $("//a[@class='HeaderMenu-link flex-shrink-0 no-underline']");
   }
@@ -101,7 +101,10 @@ class MainPage {
   // get the locator of the "Product" tab in the header
   get productTabLocator() {
     return $("(//ul/li/details/summary)[1]");
-    // return $("//summary[normalize-space()='Product']");
+  }
+  //   get the "Product" tab location
+  async getLocationOfProductTab() {
+    productTabLocator.getLocation();
   }
   // moveTo method on the "Product" tab in the header
   async moveToProductTab(value) {
@@ -113,7 +116,10 @@ class MainPage {
   // get the locator of the "Explore" tab in the header
   get exploreTabLocator() {
     return $("(//ul/li/details/summary)[2]");
-    // return $("//summary[normalize-space()='Explore']");
+  }
+  //   get the "Explore" tab location
+  async getLocationOfExploreTab() {
+    exploreTabLocator.getLocation();
   }
   // moveTo method on the "Explore" tab in the header
   async moveToExploreTab(value) {
@@ -125,12 +131,23 @@ class MainPage {
   // get the locator of the "Pricing" tab in the header
   get pricingTabLocator() {
     return $("(//ul/li/details/summary)[3]");
-    // return $("//summary[normalize-space()='Pricing']");
+  }
+  //   get the "Pricing" tab location
+  async getLocationOfPricingTab() {
+    pricingTabLocator.getLocation();
   }
   // moveTo method on the "Pricing" tab in the header
   async moveToPricingTab(value) {
     await this.pricingTabLocator.moveTo(value);
-    await browser.pause(2000);
+    // await browser.pause(2000);
+  }
+  // get the locator of the "Plans" tab in the "Pricing" drop-down menu
+  get plansTabLocator() {
+    return $("//a[normalize-space()='Plans']");
+  }
+  // click method on the  "Plans" tab
+  clickOnPlansTab() {
+    this.plansTabLocator.click();
   }
 }
 

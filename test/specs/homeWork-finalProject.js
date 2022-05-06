@@ -10,6 +10,7 @@ const getRandomData = require("../scripts/getRandomData");
 const mainPage = require("../../test/pageobjects/github.main.page");
 const loginPage = require("../../test/pageobjects/github.login.page");
 const accountPage = require("../../test/pageobjects/github.account.page");
+const plansPage = require("../../test/pageobjects/github.plans.page");
 
 // =========== Test Scripts ==========
 describe(`webdriver.io page`, () => {
@@ -71,6 +72,7 @@ describe(`webdriver.io page`, () => {
     const actualBrowserUrl = await browser.getUrl();
     console.log(`============================== The actual browser URL: ` + actualBrowserUrl);
   });
+
   // ========== Task-2 ============
   xit("checking the logging into the registered Github account", async () => {
     // open url https://github.com
@@ -119,6 +121,7 @@ describe(`webdriver.io page`, () => {
       console.log(`============================== The Github registered account login unsucceeded`);
     }
   });
+
   // ========== Task-3 ============
   xit("checking the reset of the registered Github account password with empty field", async () => {
     // open url https://github.com
@@ -182,37 +185,31 @@ describe(`webdriver.io page`, () => {
   });
 
   // ========== Task-4 ============
-  it("checking the hover and display of the header drop-down menu tabs", async () => {
+  xit("checking the hover and display of the header drop-down menu tabs", async () => {
     // open url https://github.com
     await browser.url(testSiteUrl);
 
     // ============ the "Product" tab ================
-    //   get the "Product" tab location
-    const productTabLocation = await mainPage.productTabLocator.getLocation();
     //   move mouse-hover to the "Product" tab location
-    await mainPage.moveToProductTab(productTabLocation);
+    await mainPage.moveToProductTab(mainPage.getLocationOfProductTab());
     // await browser.pause(2000);
     // check if "Product" drop-down menu tab is displayed
     const isProductTabDisplayed = mainPage.productTabLocator.isDisplayed();
     console.log(`================== Is displayed the "Product" tab in the header?: ` + (await isProductTabDisplayed)); // output: true
 
     // ============ the "Explore" tab ================
-    //   get the "Explore" tab location
-    const exploreTabLocation = await mainPage.exploreTabLocator.getLocation();
     //   move mouse-hover to the "Explore" tab location
     await $(`//input[@placeholder='Search GitHub']`).moveTo(); // needed for the moveTo method to work
-    await mainPage.moveToExploreTab(exploreTabLocation);
+    await mainPage.moveToExploreTab(mainPage.getLocationOfExploreTab());
     // await browser.pause(2000);
     // check if "Explore" drop-down menu tab is displayed
     const isExploreTabDisplayed = mainPage.exploreTabLocator.isDisplayed();
     console.log(`================== Is displayed the "Explore" tab in the header?: ` + (await isExploreTabDisplayed)); // output: true
 
     // ============ the "Pricing" tab ================
-    //   get the "Pricing" tab location
-    const pricingTabLocation = await mainPage.pricingTabLocator.getLocation();
-    //   move mouse-hover to the "Pricing" tab location
     await $(`//input[@placeholder='Search GitHub']`).moveTo(); // needed for the moveTo method to work
-    await mainPage.moveToPricingTab(pricingTabLocation);
+    //   move mouse-hover to the "Pricing" tab location
+    await mainPage.moveToPricingTab(mainPage.getLocationOfPricingTab());
     // await browser.pause(2000);
     // check if "Pricing" drop-down menu tab is displayed
     const isPricingTabDisplayed = mainPage.pricingTabLocator.isDisplayed();
@@ -222,6 +219,29 @@ describe(`webdriver.io page`, () => {
   // ========== Task-5 ============
   // Pricing => Plans -> chose "Join for free"
   // Make registration
+  xit(`checking the possibility of registering the "Join Free" plan`, async () => {
+    await browser.url(testSiteUrl); // open url https://github.com
+    // ============ the "Pricing" tab ================
+    //   move mouse-hover to the "Pricing" tab location
+    await mainPage.moveToPricingTab(mainPage.getLocationOfPricingTab());
+    await browser.pause(1000);
+    await mainPage.clickOnPlansTab();
+    await browser.pause(1000);
+    // ============ the "Plans" page ================
+    await plansPage.scrollToJoinFreeButton();
+    await browser.pause(2000);
+    await plansPage.clickOnJoinFreeButton();
+    await browser.pause(1000);
+    // ============ the "Create your account" page ================
+    await loginPage.addDataToUsernameInputField(getRandomData.randomData());
+    await browser.pause(1000);
+    await loginPage.addDataToEmailInputField(getRandomEmail.getEmail());
+    await browser.pause(1000);
+    await loginPage.addDataToPasswordInputField(getRandomData.randomData());
+    await browser.pause(1000);
+    await loginPage.clickOnEmailPreferenceCheckBox();
+    await browser.pause(4000);
+  });
 
   // ========== Task-6 ============
   //   explore Git -> topics (isDisplayed)
