@@ -12,6 +12,16 @@ class PlansPage {
   clickOnJoinFreeButton() {
     this.joinFreeButtonLocator.click();
   }
+
+  // ============ the "Enterprise Cloud" block ================
+  // get the locator of the "Enterprise Cloud" block
+  get enterpriseCloudBlockLocator() {
+    return $("//div[@class='rounded-3 px-2 pt-5 pb-2 pricing-recommended-plan']");
+  }
+  // click method on the "Enterprise Cloud" block
+  clickOnEnterpriseCloudBlock() {
+    this.enterpriseCloudBlockLocator.click();
+  }
 }
 
 module.exports = new PlansPage();

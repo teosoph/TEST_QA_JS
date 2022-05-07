@@ -11,6 +11,8 @@ const mainPage = require("../../test/pageobjects/github.main.page");
 const loginPage = require("../../test/pageobjects/github.login.page");
 const accountPage = require("../../test/pageobjects/github.account.page");
 const plansPage = require("../../test/pageobjects/github.plans.page");
+const explorePage = require("../../test/pageobjects/github.explore.page");
+const searchPage = require("../../test/pageobjects/github.search.page");
 
 // =========== Test Scripts ==========
 describe(`webdriver.io page`, () => {
@@ -104,7 +106,7 @@ describe(`webdriver.io page`, () => {
     await browser.pause(1000);
 
     // checking if displayed the test account login in the "View Profile" menu title
-    console.log(`============================== Is DISPLAYED the test account login in the "View Profile" menu title?: ` + (await accountPage.checkIfViewProfileMenuTitleIsDisplayed())); // output: true
+    console.log(`============================== Is displayed the test account login in the "View Profile" menu title?: ` + (await accountPage.checkIfViewProfileMenuTitleIsDisplayed())); // output: true
 
     //   getting  the "View Profile" menu title
     console.log(`============================== The "View Profile" menu title text is: ` + (await accountPage.getViewProfileMenuTitleText()));
@@ -233,25 +235,103 @@ describe(`webdriver.io page`, () => {
     await plansPage.clickOnJoinFreeButton();
     await browser.pause(1000);
     // ============ the "Create your account" page ================
+    //   fill the "Username" input field with valid random data
     await loginPage.addDataToUsernameInputField(getRandomData.randomData());
     await browser.pause(1000);
+    //   fill the "Email" input field with valid random data
     await loginPage.addDataToEmailInputField(getRandomEmail.getEmail());
     await browser.pause(1000);
+    //   fill the "Password" input field with valid random data
     await loginPage.addDataToPasswordInputField(getRandomData.randomData());
     await browser.pause(1000);
+    //   click on the email preference check box
     await loginPage.clickOnEmailPreferenceCheckBox();
-    await browser.pause(4000);
+    await browser.pause(2000);
   });
 
   // ========== Task-6 ============
   //   explore Git -> topics (isDisplayed)
-
+  xit(`checking the displaying the "Topics" title`, async () => {
+    await browser.url(testSiteUrl); // open url https://github.com
+    // ============ the "Explore" tab ================
+    //   move mouse-hover to the "Explore" tab location
+    await mainPage.moveToExploreTab(mainPage.getLocationOfExploreTab());
+    await browser.pause(2000);
+    //   click on the "Explore Github" tab
+    await mainPage.clickOnExploreGithubTab();
+    await browser.pause(2000);
+    //   click on the "Topics" tab
+    await explorePage.clickOnTopicsTab();
+    await browser.pause(4000);
+    // check if the "Topics" title is displayed
+    console.log(`============================== Is the  "Topics" title displayed?: ` + (await explorePage.isDisplayedTopicsTitle()));
+  });
   // ========== Task-7 ============
   // Search input -> fill "webdriver.io" -> filter "TypeScript" -> click on the first search result -> URL should contain  "webdriver.io"
+  xit(`checking the URL containing the message "webdriver.io"`, async () => {
+    await browser.url(testSiteUrl); // open url https://github.com
+    // ============ the "Explore" tab ================
+    //   click on the "Search" input field
+    await mainPage.clickOnSearchInputField();
+    // await browser.pause(2000);
+    //   addValue to the "Search" input field
+    const webDriverIoURL = "webdriver.io";
+    await mainPage.addValueToSearchInputField(webDriverIoURL);
+    await browser.pause(2000);
+    //   send "Enter" command
+    await browser.keys("\uE007");
+    await browser.pause(2000);
+
+    //   click on the "TypeScript" tab
+    // check if the "Topics" title is displayed
+    await searchPage.clickOnTypeScriptTab();
+    await browser.pause(2000);
+    // click  on the first search result tab
+    await searchPage.clickOnFirstSearchResultTab();
+    await browser.pause(2000);
+
+    //   show the actual browser URL in the console
+    console.log(`============================== The actual browser URL: ` + (await searchPage.firstSearchResultPageURL));
+
+    //   check the first page of search results if contains "webdriver.io"
+    //   variant 1
+    if ((await searchPage.firstSearchResultPageURL.indexOf("webdriver.io")) < 0) {
+      console.log(`============================== The URL of the first page of search results contains "webdriver.io": `);
+    }
+    // if ((await searchPage.firstSearchResultPageURL.indexOf("webdriver.io")) > 0) {
+    //   console.log(`============================== The URL of the first page of search results does not contain "webdriver.io": `);
+    // }
+    //   variant 2
+  });
 
   // ========== Task-8 ============
-  //   Click on the "Start a free trial" on main -> choose "enterpris cloud" -> registaration -> go back ...
-
+  //   Click on the "Start a free trial" on main -> choose "Enterprise cloud" -> registaration -> go back ...
+  it(`checking the URL containing the message "webdriver.io"`, async () => {
+    // open url https://github.com
+    await browser.url(testSiteUrl);
+    // ============ the "Explore" tab ================
+    // scroll to the "Start a free trial" button
+    await mainPage.scrollToStartFreeTrialButton();
+    await browser.pause(1000);
+    //   click on the "Start a free trial" button
+    await mainPage.clickOnStartFreeTrialButton();
+    await browser.pause(1000);
+    //   click on the the "Enterprise Cloud" block
+    await plansPage.clickOnEnterpriseCloudBlock();
+    await browser.pause(1000);
+    //   fill the "Username" input field with valid random data
+    await loginPage.addDataToUsernameInputField(getRandomData.randomData());
+    await browser.pause(1000);
+    //   fill the "Email" input field with valid random data
+    await loginPage.addDataToEmailInputField(getRandomEmail.getEmail());
+    await browser.pause(1000);
+    //   fill the "Password" input field with valid random data
+    await loginPage.addDataToPasswordInputField(getRandomData.randomData());
+    await browser.pause(1000);
+    //   click on the email preference check box
+    await loginPage.clickOnEmailPreferenceCheckBox();
+    await browser.pause(2000);
+  });
   // ========== Task-9 ============
   //    Click on the "Cariers" -> open positions -> console.log all labels
 });

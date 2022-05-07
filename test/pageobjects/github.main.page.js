@@ -127,6 +127,14 @@ class MainPage {
     await browser.pause(2000);
   }
 
+  // get the locator of the "Explore Github" tab in the header
+  get exploreGithubTabLocator() {
+    return $("//a[normalize-space()='Explore GitHub']");
+  } // click method on the  "Explore Github" tab
+  clickOnExploreGithubTab() {
+    this.exploreGithubTabLocator.click();
+  }
+
   // ============ the "Pricing" tab ================
   // get the locator of the "Pricing" tab in the header
   get pricingTabLocator() {
@@ -148,6 +156,32 @@ class MainPage {
   // click method on the  "Plans" tab
   clickOnPlansTab() {
     this.plansTabLocator.click();
+  }
+  // ============ the "Search" input field ================
+  // get the locator of the "Search" input field in the header
+  get searchInputFieldLocator() {
+    return $("//input[@placeholder='Search GitHub']");
+  }
+  // click method on the "Search" input field
+  clickOnSearchInputField() {
+    this.searchInputFieldLocator.click();
+  }
+  // addValue method on the "Search" input field
+  addValueToSearchInputField(value) {
+    this.searchInputFieldLocator.addValue(value);
+  }
+  // ============ the "Enterprise" block ================
+  // get the locator of the "Start a free trial" button in the  "Enterprise" info-block
+  get startFreeTrialButtonLocator() {
+    return $("//a[@class='btn-mktg mb-3 mb-sm-0 mr-sm-2 btn-muted-mktg']");
+  }
+  // scroll method to the "Start a free trial" button
+  scrollToStartFreeTrialButton() {
+    this.startFreeTrialButtonLocator.scrollIntoView();
+  }
+  // click method on the "Search" input field
+  clickOnStartFreeTrialButton() {
+    this.startFreeTrialButtonLocator.click();
   }
 }
 
