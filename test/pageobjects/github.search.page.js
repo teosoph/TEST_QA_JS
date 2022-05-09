@@ -17,11 +17,8 @@ class SearchPage {
     this.firstSearchResultTabLocator.click();
   }
   // getUrl method on the first search result page
-  getUrlOfFirstSearchResultPage() {
-    return browser.getUrl();
-  }
-  get firstSearchResultPageURL() {
-    return this.getUrlOfFirstSearchResultPage();
+  async getUrlOfFirstSearchResultPage() {
+    return await browser.getUrl();
   }
 }
 module.exports = new SearchPage();

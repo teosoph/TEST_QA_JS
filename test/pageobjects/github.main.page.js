@@ -183,6 +183,128 @@ class MainPage {
   clickOnStartFreeTrialButton() {
     this.startFreeTrialButtonLocator.click();
   }
+  // ============ the "Careers" link ================
+  // get the locator of the "Careers" link
+  get careersLinkLocator() {
+    return $("//a[normalize-space()='Careers']");
+  }
+  // scroll method to the "Start a free trial" button
+  scrollToCareersLink() {
+    this.careersLinkLocator.scrollIntoView();
+  }
+  // click method on the "Search" input field
+  clickOnCareersLink() {
+    this.careersLinkLocator.click();
+  }
+  // ============ the "Open positions" link ================
+  // get the locator of the "Careers" link
+  get openPositionsLinkLocator() {
+    return $("//a[@class='f3-light d-inline-block mr-5 js-smoothscroll-anchor']");
+  }
+  // click method on the "Careers" link
+  clickOnOpenPositionsLink() {
+    this.openPositionsLinkLocator.click();
+  }
+  // ============ the "Open positions" list ================
+  // the "Business Systems position"  link
+  // get the locator of the "Business Systems position"  link
+  get businessSystemsPositionLinkLocator() {
+    return $("//h3[normalize-space()='Business Systems']");
+  }
+  //   get method the  "Business Systems position"  link title
+  async getBusinessSystemsPositionLinkTitle() {
+    return await this.businessSystemsPositionLinkLocator.getText();
+  }
+  // the "Design position" link
+  // get the locator of the "Design position" link
+  get designPositionLinkLocator() {
+    return $("//h3[normalize-space()='Design']");
+  }
+  //   get method the  "Design position" link title
+  async getDesignPositionLinkTitle() {
+    return await this.designPositionLinkLocator.getText();
+  }
+  //  the "Engineering position"  link
+  // get the locator of the "Engineering position"  link
+  get engineeringSystemsPositionLinkLocator() {
+    return $("//h3[normalize-space()='Engineering']");
+  }
+  //   get method the  "Engineering position" link title
+  async getEngineeringPositionLinkTitle() {
+    return await this.engineeringSystemsPositionLinkLocator.getText();
+  }
+  //  the "Finance position"  link
+  // get the locator of the "Finance position"  link
+  get financePositionLinkLocator() {
+    return $("//h3[normalize-space()='Finance']");
+  }
+  async getFinancePositionLinkTitle() {
+    return await this.financePositionLinkLocator.getText();
+  }
+  //  the "Human Resources position"  link
+  // get the locator of the "Human Resources position"  link
+  get humanResourcesPositionLinkLocator() {
+    return $("//h3[normalize-space()='Human Resources']");
+  }
+  async getHumanResourcesPositionLinkTitle() {
+    return await this.humanResourcesPositionLinkLocator.getText();
+  }
+  //  the "Legal position"  link
+  // get the locator of the "Legal position"  link
+  get legalPositionLinkLocator() {
+    return $("//h3[normalize-space()='Legal']");
+  }
+  async getLegalPositionLinkTitle() {
+    return await this.legalPositionLinkLocator.getText();
+  }
+  //  the "Marketing position"  link
+  // get the locator of the "Marketing position"  link
+  get marketingPositionLinkLocator() {
+    return $("//h3[normalize-space()='Marketing']");
+  }
+  async getMarketingPositionLinkTitle() {
+    return await this.marketingPositionLinkLocator.getText();
+  }
+  //  the "Product position"  link
+  // get the locator of the "Product position"  link
+  get productPositionLinkLocator() {
+    return $("//h3[normalize-space()='Product']");
+  }
+  async getProductPositionLinkTitle() {
+    return await this.productPositionLinkLocator.getText();
+  }
+  //  the "Operations position"  link
+  // get the locator of the "Operations position"  link
+  get operationsPositionLinkLocator() {
+    return $("//h3[normalize-space()='Operations']");
+  }
+  async getOperationsPositionLinkTitle() {
+    return await this.operationsPositionLinkLocator.getText();
+  }
+  // the "Sales position"  link
+  // get the locator of the "Sales position"  link
+  get salesPositionLinkLocator() {
+    return $("//h3[normalize-space()='Sales']");
+  }
+  async getSalesPositionLinkTitle() {
+    return await this.salesPositionLinkLocator.getText();
+  }
+  // the "Security position"  link
+  // get the locator of the "Security position"  link
+  get securityPositionLinkLocator() {
+    return $("//h3[normalize-space()='Security']");
+  }
+  async getSecurityPositionLinkTitle() {
+    return await this.securityPositionLinkLocator.getText();
+  }
+  //  the "Support position"  link
+  // get the locator of the "Support position"  link
+  get supportPositionLinkLocator() {
+    return $("//h3[normalize-space()='Support']");
+  }
+  async getSupportPositionLinkTitle() {
+    return await this.supportPositionLinkLocator.getText();
+  }
 }
 
 module.exports = new MainPage();

@@ -22,6 +22,16 @@ class PlansPage {
   clickOnEnterpriseCloudBlock() {
     this.enterpriseCloudBlockLocator.click();
   }
+
+  // ============ the "Enterprise Server" block ================
+  // get the locator of the "Enterprise Server" block
+  get enterpriseServerBlockLocator() {
+    return $("//div[@class='rounded-3 px-2 pt-5 pb-2']");
+  }
+  // click method on the "Enterprise Server" block
+  clickOnEnterpriseServerBlock() {
+    this.enterpriseServerBlockLocator.click();
+  }
 }
 
 module.exports = new PlansPage();

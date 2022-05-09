@@ -13,6 +13,8 @@ const accountPage = require("../../test/pageobjects/github.account.page");
 const plansPage = require("../../test/pageobjects/github.plans.page");
 const explorePage = require("../../test/pageobjects/github.explore.page");
 const searchPage = require("../../test/pageobjects/github.search.page");
+const enterprisePage = require("../../test/pageobjects/github.enterprise.page");
+const getRandomPhone = require("../scripts/getRandomPhone");
 
 // =========== Test Scripts ==========
 describe(`webdriver.io page`, () => {
@@ -288,50 +290,115 @@ describe(`webdriver.io page`, () => {
     await browser.pause(2000);
     // click  on the first search result tab
     await searchPage.clickOnFirstSearchResultTab();
-    await browser.pause(2000);
+    await browser.pause(4000);
 
     //   show the actual browser URL in the console
-    console.log(`============================== The actual browser URL: ` + (await searchPage.firstSearchResultPageURL));
+    console.log(`==================== The actual browser URL: ` + (await searchPage.getUrlOfFirstSearchResultPage()));
 
-    //   check the first page of search results if contains "webdriver.io"
+    //   check if the first page of search results contains "webdriver.io"
     //   variant 1
-    if ((await searchPage.firstSearchResultPageURL.indexOf("webdriver.io")) < 0) {
-      console.log(`============================== The URL of the first page of search results contains "webdriver.io": `);
-    }
-    // if ((await searchPage.firstSearchResultPageURL.indexOf("webdriver.io")) > 0) {
-    //   console.log(`============================== The URL of the first page of search results does not contain "webdriver.io": `);
+    // if ((await String(searchPage.getUrlOfFirstSearchResultPage()).indexOf("webdriver.io")) < 0) {
+    //   console.log(`============================== The URL of the first page of search results do not contain "webdriver.io"`);
     // }
+
     //   variant 2
+    await expect(browser).toHaveUrlContaining("webdriver.io");
+
+    //   variant 3
+    // await expect(String(await searchPage.getUrlOfFirstSearchResultPage())).toHaveTextContaining(`webdriver.io`);
   });
 
   // ========== Task-8 ============
   //   Click on the "Start a free trial" on main -> choose "Enterprise cloud" -> registaration -> go back ...
-  it(`checking the URL containing the message "webdriver.io"`, async () => {
+  xit(`checking the possibility to register "Enterprise Cloud" and "Enterprise Server"`, async () => {
     // open url https://github.com
     await browser.url(testSiteUrl);
     // ============ the "Explore" tab ================
     // scroll to the "Start a free trial" button
     await mainPage.scrollToStartFreeTrialButton();
-    await browser.pause(1000);
+    await browser.pause(2000);
     //   click on the "Start a free trial" button
     await mainPage.clickOnStartFreeTrialButton();
-    await browser.pause(1000);
+    await browser.pause(2000);
     //   click on the the "Enterprise Cloud" block
     await plansPage.clickOnEnterpriseCloudBlock();
-    await browser.pause(1000);
+    await browser.pause(2000);
     //   fill the "Username" input field with valid random data
     await loginPage.addDataToUsernameInputField(getRandomData.randomData());
-    await browser.pause(1000);
+    await browser.pause(2000);
     //   fill the "Email" input field with valid random data
     await loginPage.addDataToEmailInputField(getRandomEmail.getEmail());
-    await browser.pause(1000);
+    await browser.pause(2000);
     //   fill the "Password" input field with valid random data
     await loginPage.addDataToPasswordInputField(getRandomData.randomData());
-    await browser.pause(1000);
+    await browser.pause(2000);
     //   click on the email preference check box
     await loginPage.clickOnEmailPreferenceCheckBox();
     await browser.pause(2000);
+    //   go back to the previous page
+    await browser.back();
+    await browser.pause(2000);
+    //   click on the "Enterprise Server" block
+    await plansPage.clickOnEnterpriseServerBlock();
+    await browser.pause(2000);
+
+    //   =============== Enterprise Page ============
+    //   fill random data to the "Name" input field
+    await enterprisePage.addDataToNameInputField(getRandomData.randomData());
+    await browser.pause(2000);
+    //   fill random data to the "Company" input field
+    await enterprisePage.addDataToCompanyInputField(getRandomData.randomData());
+    await browser.pause(2000);
+    //   fill random data to the "Email" input field
+    await enterprisePage.addDataToEmailInputField(getRandomEmail.getEmail());
+    await browser.pause(2000);
+    //   fill random data to the "Phone" input field
+    await enterprisePage.addDataToPhoneInputField(getRandomPhone.randomPhone());
+    await browser.pause(2000);
+    //   click on the "Not sure yet" radio-button
+    await enterprisePage.clickOnNotSureYetRadioButton();
+    await browser.pause(2000);
+    //   click on the "Yes" radio-button
+    await enterprisePage.clickOnYesRadioButton();
+    await browser.pause(2000);
+    //   fill random data to the "List the question" input field
+    await enterprisePage.addValueToTextAreaQuestionInputField(getRandomData.randomData() + ` ` + getRandomEmail.getEmail() + ` ` + getRandomData.randomData() + ` ` + getRandomPhone.randomPhone() + ` ` + getRandomData.randomData());
+    await browser.pause(2000);
+    //   click on the check-box in the "Agreements" block
+    await enterprisePage.clickOnAgreeCheckBox();
+    await browser.pause(4000);
   });
   // ========== Task-9 ============
   //    Click on the "Cariers" -> open positions -> console.log all labels
+  it(`show to the console all the titles of the carrier open positions `, async () => {
+    // open url https://github.com
+    await browser.url(testSiteUrl);
+    // ============ the "Careers" link ================
+    //   scroll to the "Careers" link
+    await mainPage.scrollToCareersLink();
+    await browser.pause(2000);
+    //   click on the "Careers" link
+    await mainPage.clickOnCareersLink();
+    await browser.pause(2000);
+    //   click on the "Open positions" link
+    await mainPage.clickOnOpenPositionsLink();
+    await browser.pause(2000);
+    //   show to console "Open positions" list
+    console.log(
+      `======= "Open positions" list: `,
+      "\n" + "- " + (await mainPage.getBusinessSystemsPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getDesignPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getEngineeringPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getFinancePositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getHumanResourcesPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getLegalPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getMarketingPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getProductPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getOperationsPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getSalesPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getSecurityPositionLinkTitle()),
+      "\n" + "- " + (await mainPage.getSupportPositionLinkTitle())
+    );
+    await browser.pause(2000);
+  });
 });
