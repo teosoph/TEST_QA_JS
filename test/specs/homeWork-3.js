@@ -11,8 +11,20 @@
 // === 2 ====
 // Locators for "Expect" element
 // Id locator: locator not provided
-// CSS locator: [class="menu__link"][href*="/docs/api/expect"]
-// Xpath locator: //a[text()='Expect']  or  //*[text()="Expect" and @href and @xpath]
+
+// CSS locator:  [class= "menu__link"][href*="/docs/api/expect"]
+// next CSS element:  [class= "menu__link"][href*="/docs/api/expect"]div
+// p a[href*="appium"]
+
+// Xpath locator:
+//a[text()='Expect']  or
+//*[text()="Expect" and @href and @xpath]
+//*[contains(text(), "Expect") and @href and @xpath]
+//h3[contains(@class, "Expect")]
+//div[@class='g'][5]//a[@class='fl']
+//div[text()='g']/../../..
+//div[text()='g']/parent::div/
+//div[text()='g']/parent::div/following-sibling:div
 
 // === 3 ====
 // Locators for "Protocols" element

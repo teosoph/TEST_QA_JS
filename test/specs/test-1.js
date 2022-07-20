@@ -1,40 +1,42 @@
-it("should demonstrate Task-1", async () => {
-  await browser.url("https://webdriver.io");
+// CSS locators
+// [class*="col-6 col-sm-3 col-lg-2 mb-6 mb-md-2 pr-3"] a
+// [class*="col-6 col-sm-3 "] a
 
-  const apiTabLocator = await $('li a[href="/docs/api"]');
-  await apiTabLocator.click();
-  await browser.pause(2000);
+// XPath locators
+//*[contains(@class, "lh-condensed mb-3")]
+//*[contains(text(), 'Electron')]
+//li[@class="lh-condensed mb-3"]
 
-  const postHeaderH2 = $("//h2[@id='examples']");
-  console.log(await postHeaderH2.getAttribute("id"));
+//Соседский элемент
+//li[@class="lh-condensed mb-3"]/preceding-sibling::ul  //выше
+//li[@class="lh-condensed mb-3"]/following-sibling::*   //ниже
+
+//Родительский элемент
+//li[@class="lh-condensed mb-3"]/parent::ul  //отца выше
+//li[@class="lh-condensed mb-3"]/ancestor::ul  //деда/прадеда выше
+
+// Дочерний элемент
+//li[@class="lh-condensed mb-3"]/child::*  //сын ниже
+//li[@class="lh-condensed mb-3"]/descendant::a  //внук ниже
+//li[@class="lh-condensed mb-3"]//a  //внук ниже
+
+// Элемент из списка
+// (//*[@class='lh-condensed mb-3'])[12]
+
+describe(`Test-1`, () => {
+  it("Should click on the button and check if the text is displayed", async () => {
+    const button_homeAutomate = await $('[href="#home-automate"]');
+    const text_forCheck = await $('[class="text-gradient-purple-coral no-wrap"]');
+
+    await browser.url("https://github.com/");
+    await browser.pause(2000);
+
+    await button_homeAutomate.scrollIntoView();
+    await browser.pause(2000);
+
+    await button_homeAutomate.click();
+    await browser.pause(2000);
+
+    console.log("------------------------------------ Is the checking text DISPLAYED: " + (await text_forCheck.isDisplayed()));
+  });
 });
-
-//   xit(`should check the entered characters in the "Search" field`, async () => {
-//     // open url https://github.com
-//     await browser.url("https://github.com");
-//     await browser.pause(5000);
-
-//     //   click on the search field
-//     let searchInputForm = $("form[aria-label='Site']");
-//     await searchInputForm.click();
-//     await browser.pause(5000);
-
-//     //   fill data in the search field
-//           let searchInput = $("//input[@data-test-selector="nav-search-input"]");
-
-//     searchInput.addValue(256);
-//     await browser.pause(5000);
-
-//     //   send "Enter" command
-//     await browser.keys("\uE007");
-//     await browser.pause(5000);
-//   });
-
-//  while(true){
-// let i=0;
-// searchInput.addValue(i);
-//           i++;
-// if(i===257){
-// break;
-// }
-// }

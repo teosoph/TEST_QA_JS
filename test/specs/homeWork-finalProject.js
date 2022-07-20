@@ -4,9 +4,9 @@ const validEmail = `qa-qc@i.ua`;
 const validPassword = `G1thub.c0M`;
 
 // ==========  Imported constants  ============
-const assert = require(`assert`);
 const getRandomEmail = require("../scripts/getRandomEmail");
 const getRandomData = require("../scripts/getRandomData");
+const getRandomPhone = require("../scripts/getRandomPhone");
 const mainPage = require("../../test/pageobjects/github.main.page");
 const loginPage = require("../../test/pageobjects/github.login.page");
 const accountPage = require("../../test/pageobjects/github.account.page");
@@ -14,7 +14,6 @@ const plansPage = require("../../test/pageobjects/github.plans.page");
 const explorePage = require("../../test/pageobjects/github.explore.page");
 const searchPage = require("../../test/pageobjects/github.search.page");
 const enterprisePage = require("../../test/pageobjects/github.enterprise.page");
-const getRandomPhone = require("../scripts/getRandomPhone");
 
 // =========== Test Scripts ==========
 describe(`webdriver.io page`, () => {
